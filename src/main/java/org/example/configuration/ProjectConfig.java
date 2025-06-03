@@ -12,7 +12,6 @@ public class ProjectConfig {
 
     @Bean
     Dog dog() {
-        System.out.println("Dog");
         var d = new Dog();
         d.setName("Cole");
         return d;
