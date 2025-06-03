@@ -21,4 +21,3 @@ public class Main {
         commentService.sendNotification(comment);
     }
 }
-test
