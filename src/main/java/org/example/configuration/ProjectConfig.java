@@ -7,14 +7,25 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 @Configuration
 @ComponentScan(basePackages = "org.example")
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class ProjectConfig {
+
+    //defining a custom annotation
+    @Retention(RetentionPolicy.RUNTIME)   //specify that this annotation can be intercepted at runtime. Not possible by default.
+    @Target(ElementType.METHOD)           //Set the level at which this annotation should get used. (at method level for this one.)
+    public @interface checkAccess {
+
+    }
 
     @Bean
     Dog dog() {
-        System.out.println("Dog");
         var d = new Dog();
         d.setName("Cole");
         return d;
